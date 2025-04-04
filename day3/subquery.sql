@@ -7,6 +7,7 @@ select bookname from Book where price = (
 select name from Customer where custid in(select custid from Orders)
 
 # - 주문하지 않은 고객의 이름 (부속질의 사용)
+select name from Customer where custid not in(select custid from Orders)
 
 # - 박지성이 구매하지 않은 도서의 이름
 # - 대한미디어에서 출판한 도서를 구매한 고객의 이름을 보이시오.
