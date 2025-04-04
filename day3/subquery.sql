@@ -16,5 +16,9 @@ select bookname from Book where bookid not in(select bookid from Orders where cu
 select name from Customer where custid in (select custid from Orders where bookid in (select bookid from Book where publisher = '대한미디어'))
 
 # - 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구하시오.
-# - 주문이 있는 고객의 이름과 주소를 보이시오.(exists)
+select * from Book b1 where b1.price > (select avg(b2.price) from Book b2 where b1.publisher = b2.publisher)
 
+# - 주문이 있는 고객의 이름과 주소를 보이시오.(exists)
+select name, address from Customer c where exists(
+    select * from Orders o where c.custid = o.custid
+)
