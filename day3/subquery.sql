@@ -13,6 +13,8 @@ select name from Customer where custid not in(select custid from Orders)
 select bookname from Book where bookid not in(select bookid from Orders where custid = (select custid from Customer where name='박지성'))
 
 # - 대한미디어에서 출판한 도서를 구매한 고객의 이름을 보이시오.
+select name from Customer where custid in (select custid from Orders where bookid in (select bookid from Book where publisher = '대한미디어'))
+
 # - 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구하시오.
 # - 주문이 있는 고객의 이름과 주소를 보이시오.(exists)
 
